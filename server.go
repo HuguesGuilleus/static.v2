@@ -69,7 +69,7 @@ func readFileOnce(f string, m Minifier) []byte {
 
 	data := make([]byte, 0)
 	filepath.Walk(f, func(p string, info os.FileInfo, err error) error {
-		if info.IsDir() || err != nil {
+		if err != nil || info.IsDir() {
 			return nil
 		}
 		d, err := ioutil.ReadFile(p)
